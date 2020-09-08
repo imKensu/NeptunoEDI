@@ -1,0 +1,50 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<NeptunoMVC01.Models.Ciudad>
+
+@{ ViewBag.Title = "Lista de Ciudades"; }
+<div class="well">
+<h2>Lista de Ciudades</h2>
+    </div>
+<p>
+    @Html.ActionLink("Nuevo", "Create", new { }, new { @class = "btn btn-primary" })
+</p>
+
+@using (Html.BeginForm(null, null, FormMethod.Get, new { @class = "form-inline" }))
+{
+<label>Filtrar por:</label>
+                @Html.DropDownList("paisSeleccionadoId", (SelectList)ViewBag.ListaPaises, htmlAttributes: new { @class = "form-control" })
+                                <input type="submit" class="btn btn-success" value="Filtrar" />}
+<hr />
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Pais.NombrePais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().NombreCiudad)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Pais.NombrePais)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NombreCiudad)
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "Edit", new { id = item.CiudadId }, new { @class = "btn btn-warning" })
+        @Html.ActionLink("Detalle", "Details", new { id = item.CiudadId }, new { @class = "btn btn-info" })
+        @Html.ActionLink("Borrar", "Delete", new { id = item.CiudadId }, new { @class = "btn btn-danger" })
+    </td>
+</tr>}
+
+</table>
+Página: @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber), de: @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new
+{
+    page
+}))

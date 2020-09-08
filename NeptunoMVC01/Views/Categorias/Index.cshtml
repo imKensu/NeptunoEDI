@@ -1,0 +1,38 @@
+﻿@model IEnumerable<NeptunoMVC01.Models.Categoria>
+
+@{ ViewBag.Title = "Lista de Categorias"; }
+
+<div class="well">
+<h2>Lista de Categorias</h2>
+</div>
+<p>
+    @Html.ActionLink("Agregar categoria", "Create", new { }, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreCategoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.NombreCategoria)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Descripcion)
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "Edit", new { id = item.CategoriaId }, new { @class = "btn btn-warning" })
+        @Html.ActionLink("Detalles", "Details", new { id = item.CategoriaId }, new { @class = "btn btn-info" })
+        @Html.ActionLink("Borrar", "Delete", new { id = item.CategoriaId }, new { @class = "btn btn-danger" })
+    </td>
+</tr>}
+
+</table>

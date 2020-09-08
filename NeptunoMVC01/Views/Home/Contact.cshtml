@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "CONTACTO";
+}
+
+<div class="jumbotron">
+    <h2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
+</div>
+<address>
+    @ViewBag.Calle<br />
+    @ViewBag.Lugar<br />
+    <abbr title="Celular">CEL:</abbr>
+    @ViewBag.Telefono
+</address>
+
+<address>
+    <strong>Soporte:</strong>   <a href="mailto:soporte@neptoono.com">soporte@neptoono.com</a><br />
+    <strong>Marketing:</strong> <a href="mailto:marketing@neptoono.com">marketing@neptoono.com</a>
+</address>
